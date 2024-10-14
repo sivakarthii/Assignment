@@ -21,6 +21,18 @@ const Product = ({ state }) => {
     dispatch(addToCart(product));
   };
 
+  const contentReducer = (textValues) => {
+    return textValues.length > 60
+      ? textValues.substring(0, 60) + "..."
+      : textValues;
+  };
+
+  const titleContentReducer = (textValues) => {
+    return textValues.length > 25
+      ? textValues.substring(0, 25) + "..."
+      : textValues;
+  };
+
   return (
     <Grid container spacing={2}>
       {state?.map((product, index) => {
@@ -36,7 +48,7 @@ const Product = ({ state }) => {
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   <Tooltip title={product.title}>
-                    {/* {titleContentReducer(product.title)} */}
+                    {titleContentReducer(product.title)}
                   </Tooltip>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -44,7 +56,7 @@ const Product = ({ state }) => {
                 </Typography>
                 <Typography gutterBottom variant="p" component="div">
                   <Tooltip title={product.description}>
-                    {/* {contentReducer(product.description)} */}
+                    {contentReducer(product.description)}
                   </Tooltip>
                 </Typography>
               </CardContent>
